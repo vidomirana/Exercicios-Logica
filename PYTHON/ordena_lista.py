@@ -1,20 +1,36 @@
 #Ordenação de Lista: Crie um programa que receba uma lista de números e os ordene em ordem crescente ou decrescente, dependendo da escolha do usuário.
 
-numeros = [4,3,9,8,1] #[1, 4, 9, 8, 3]
-'''while True:
+def organizar(lista, ordem):
+    '''
+    Função para organizar elementos numéricos de uma lista
+    :lista: Lista a ser ordenada
+    :ordem: ordem d organização, 'c'=crescente (padrão), 'd'=decrescente
+    '''
+    if ordem == 'c':
+        for num in range(0, len(lista)):
+            for i in range(num+1, len(lista)):
+                if lista[num] > lista[i]:
+                    lista[i], lista[num] = lista[num], lista[i]
+    if ordem == 'd':
+        for num in range(0, len(lista)):
+            for i in range(num+1, len(lista)):
+                if lista[num] < lista[i]:
+                    lista[i], lista[num] = lista[num], lista[i]
+    return lista
+
+numeros = []
+while True:
     n = int(input('Digite um número [999 para terminar]: '))
     if n == 999:
         break
     numeros.append(n)
-#numeros.insert(2, n) 
+
 print(f'Lista original: {numeros}')
+print('======================================')
 
-for i in range(0, len(numeros)):
-    if  numeros[i] > numeros[i+1]:
-'''
-for x in range(0, len(numeros)-1):
-    for i in range(numeros[x+1], len(numeros)+1):   ###revisar isso aqui, parei no meio do raciocinio
-        if numeros[x] > numeros[i]:
-            numeros[i], numeros[x] = numeros[x], numeros[i]
+lista_crescente = organizar(numeros, 'c')
+lista_decrescente = organizar(numeros, 'd')
 
-print(f'Lista organizada crescente: {numeros}')
+print(f'Lista organizada crescente: {lista_crescente}') #PORQUE AQUI DÁ ERRADO??? AAA ELE ME DA A ORDEM DECRESCENTE
+print('======================================')
+print(f'Lista organizada decrescente: {lista_decrescente}')
